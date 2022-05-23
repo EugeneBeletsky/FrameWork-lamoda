@@ -30,7 +30,7 @@ describe('check purchase functionality', function(){
         cy.visit('https://www.lamoda.by/');     //заходим на сайт перед каждым тестом
     });
 
-    //покупаем майку
+    //проверяем, есть ли размер
     it ('buy tshirt possible to check size', ()=>{
         PurchasePage.buyItem(customer1.item);
         PurchasePage.selectItembyNumber(customer1.number);

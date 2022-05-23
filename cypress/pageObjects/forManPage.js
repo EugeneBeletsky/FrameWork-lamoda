@@ -38,6 +38,49 @@ class ForMan{
     itemsDescription(){
         return cy.get('.product-title__model-name');
     }
+
+    //sort conditions by price button
+    sortByPricePeriodButton(){
+        //return cy.get('._2YKtuOJPpF5Po0l9hCsJsA').eq(5);
+        return cy.get('.icon.icon__filter_arrow.icon_direction-down.icon_16.I6_8xKif13q4FIRsmDkff',{timeout:3000}).eq(5);
+
+    }
+
+        //sort conditions by cloro button
+    sortByColorButton(){
+        return cy.get('._2YKtuOJPpF5Po0l9hCsJsA').eq(2);
+        //return cy.get('.icon.icon__filter_arrow.icon_direction-down.icon_16.I6_8xKif13q4FIRsmDkff',{timeout:3000}).eq(5);
+
+    }
+
+    //select color button
+    sortBycolor(color){
+        return cy.get('.x-checkbox__content').eq(color)   
+    }
+
+    //price MIN Field
+    typePriceMin(price){
+        return cy.get('.input__group.input__group_default-theme').eq(0) 
+        .clear()
+        .wait(1000)
+        .type(`${price}`, {force:true})       
+       
+    }
+
+    //price MAX field
+    typePriceMax(price){
+        return cy.get('.input__group.input__group_default-theme').eq(1)        
+                .clear()
+                .wait(1000)
+                .type(`${price}`, {force:true})
+    }
+
+    //confirm filter button by price
+    confirmButton(){
+        return cy.get('.x-button.x-button_primaryFilledWeb7184.x-button_24.x-button_intrinsic-width')
+    }
+
+
     
 
 }

@@ -66,5 +66,38 @@ describe('tests for Man page', function(){
 
     });
 
+    it.skip ('sort by price range', ()=>{
+        ForMan.clothesButton().click();
+        ForMan.bryukiButton().click();
+        ForMan.sortByPricePeriodButton().click();     
+ 
+
+        //не получается реализовать, т.к. поле сортировки пропадает перед тем, как вводить значения. не нашел решения
+
+        //ForMan.typePriceMin().trigger('mouseover')
+        ForMan.typePriceMin('100');
+        //ForMan.typePriceMax().trigger('mouseover')
+        ForMan.typePriceMax('150');
+        ForMan.confirmButton().click();
+        cy.wait(2000);
+        ForMan.getItemPrice(0).should('be.gte', 100)
+                                .and('be.lte', 150)
+
+    })
+
+
+    it.skip ('sort by color select', ()=>{
+
+        ForMan.clothesButton().click();
+        ForMan.bryukiButton().click();
+        ForMan.sortByColorButton().click()       
+        ForMan.sortBycolor('1').click()
+        ForMan.sortByColorButton().click()
+        cy.wait(3000)
+        ForMan.sortByColorButton().invoke('text').should('iclude.text', 'белый')    
+
+
+    })
+
 
 })
