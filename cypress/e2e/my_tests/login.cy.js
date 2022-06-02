@@ -6,27 +6,36 @@ const BaseElements = require('../../helpers/baseElements');
 const LoginPage = require('../../pageObjects/loginPage');
 
 
+const user ={
+    email: 'eugenebeletsky@gmail.com',
+    password: 'Y68ZNU3hbfkTNKE',
+    wrongEmail: 'eugenebeletsky11111@gmail.com',
+    wrongPass: 'Y68ZNU3hbfkTNKE11111',
+    admin: 'admin'
+}
+
+
 describe('check Login functionality', function(){
 
     beforeEach(()=>{
-        cy.viewport(1920,1080);     //устанавливаем разрешение браузера по дефолту перед каждым тестом
-        cy.visit('https://www.lamoda.by/');     //заходим на сайт перед каждым тестом
+        cy.viewport(1920,1080);     
+        cy.visit('https://www.lamoda.by/');     
     });
-        //делаем валидный LogIn
+        
         it ('check valid LogIn on website', ()=>{
-            LoginPage.buttonLogin().click();
-            LoginPage.typeEmail('eugenebeletsky@gmail.com');
-            LoginPage.typePassword('Y68ZNU3hbfkTNKE');
+            LoginPage.buttonLogin().click();            
+            BaseElements.type(LoginPage.typeEmail(), user.email)            
+            BaseElements.type(LoginPage.typePassword(), user.password)
             LoginPage.buttonConfirmLogIn().click();
             LoginPage.tabProfile()
                     .should('be.visible');    
         });
 
-        //делаем невалидный Login с неверным password
+        
         it('check invalid pass', ()=>{
             LoginPage.buttonLogin().click();
-            LoginPage.typeEmail('eugenebeletsky@gmail.com');
-            LoginPage.typePassword('Y68ZNU3hbfkTNKE1111');      //invalid pass
+            BaseElements.type(LoginPage.typeEmail(), user.email)            
+            BaseElements.type(LoginPage.typePassword(), user.wrongPass)  //invalid pass
             LoginPage.buttonConfirmLogIn().click();
             LoginPage.invalidMessage()
                 .should('be.visible')
@@ -36,11 +45,11 @@ describe('check Login functionality', function(){
         });
 
 
-        //делаем невалидный Login с неверным email
+        
         it('check invalid email', ()=>{
             LoginPage.buttonLogin().click();
-            LoginPage.typeEmail('eugenebeletsky111@gmail.com');     //invalid email
-            LoginPage.typePassword('Y68ZNU3hbfkTNKE1111');
+            BaseElements.type(LoginPage.typeEmail(), user.wrongEmail)       //invalid email     
+            BaseElements.type(LoginPage.typePassword(), user.password)
             LoginPage.buttonConfirmLogIn().click();
             LoginPage.invalidMessage()
                 .should('be.visible')
@@ -49,13 +58,13 @@ describe('check Login functionality', function(){
 
         });
 
-        //делаем невалидный Login с admin/admin
+        
         it ('check invalid length field', ()=>{
             LoginPage.buttonLogin().click();
-            LoginPage.typeEmail('admin');     //admin
-            LoginPage.typePassword('admin');      //admin
+            BaseElements.type(LoginPage.typeEmail(), user.admin)       //admin     
+            BaseElements.type(LoginPage.typePassword(), user.admin)      //admin
             LoginPage.buttonConfirmLogIn()
-                .should('be.disabled');     //проверяем, что кнопка не активна           
+                .should('be.disabled');            
 
 
         });
