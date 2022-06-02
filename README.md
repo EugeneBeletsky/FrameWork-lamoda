@@ -10,4 +10,14 @@ HELLO!
 This repository contains a project for testing the web service lamoda.by
 To write my framework, I used Cypress with PageObjectModel
 The reporter I used is cypress-mochawesome-reporter.
-To run all tests a script is configured, use this: npm run cypress:runChrome
+To run all tests a script is configured, use this:
+
+```
+git clone https://github.com/EugeneBeletsky/FrameWork-lamoda.git
+```
+```
+npm install
+```
+```
+npm run cypress:runChrome
+```
