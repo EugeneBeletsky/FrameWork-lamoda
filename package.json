@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "cypress:runChrome": "cypress run --browser chrome --headed --spec cypress/integration/my_tests/*.spec.js",
-    "cypress:runChromeHeadless": "cypress run --browser chrome --headless --spec cypress/integration/my_tests/*.spec.js"
+    "cypress:runChrome": "cypress run --browser chrome --headed --spec cypress/e2e/my_tests/*.cy.js",
+    "cypress:runChromeHeadless": "cypress run --browser chrome --headless --spec cypress/e2e/my_tests/*.cy.js"
   },
   "author": "Eugene Beletsky",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^9.6.1",
+    "cypress": "^10.0.1",
     "cypress-mochawesome-reporter": "^3.1.0"
   }
 }
